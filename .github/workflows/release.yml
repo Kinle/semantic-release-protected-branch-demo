@@ -1,0 +1,63 @@
+name: release.yml
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+  workflow_dispatch:
+
+concurrency: semantic-release
+jobs:
+  release-checks:
+    name: Release Checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: ./.github/workflows/composite/build-checks
+  semantic-release-dry-run:
+    name: Semantic Release Dry Run
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: '0'
+          persist-credentials: false
+      - uses: ./.github/workflows/composite/release
+        with:
+          release_token: ${{ secrets.RELEASE_TOKEN }}
+          dry_run: true
+  semantic-release:
+    name: Semantic Release
+    needs: [ release-checks, semantic-release-dry-run ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      new_release_published: ${{ steps.semantic_release.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic_release.outputs.new_release_version }}
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: '0'
+          persist-credentials: false
+      - uses: ./.github/workflows/composite/release
+        id: semantic_release
+        with:
+          dry_run: false
+          release_token: ${{ secrets.RELEASE_TOKEN }}

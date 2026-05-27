@@ -1,0 +1,16 @@
+name: Build Checks
+description: Build Checks
+inputs:
+  java-version:
+    description: Java version to use
+    required: false
+    default: "21"
+runs:
+  using: composite
+  steps:
+    - name: Setup Java
+      uses: ./.github/workflows/composite/java-setup
+    - name: Test & Build
+      run: ./gradlew clean build
+      shell: bash
+
