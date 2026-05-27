@@ -20,5 +20,12 @@ class CalculatorTest {
     int result = calculator.sub(4, 5);
     assertEquals(-1, result);
   }
+
+  @Test
+  void shouldMultiplyNumbers() {
+    Calculator calculator = new Calculator();
+    int result = calculator.mul(4, 5);
+    assertEquals(20, result);
+  }
 }
 
