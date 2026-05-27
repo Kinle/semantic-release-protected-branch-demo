@@ -28,3 +28,4 @@ class CalculatorTest {
     assertEquals(20, result);
   }
 }
+
