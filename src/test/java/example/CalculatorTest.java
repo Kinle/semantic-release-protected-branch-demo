@@ -27,5 +27,11 @@ class CalculatorTest {
     int result = calculator.mul(4, 5);
     assertEquals(20, result);
   }
-}
 
+  @Test
+  void shouldDivideNumbers() {
+    Calculator calculator = new Calculator();
+    int result = calculator.div(25, 5);
+    assertEquals(5, result);
+  }
+}
