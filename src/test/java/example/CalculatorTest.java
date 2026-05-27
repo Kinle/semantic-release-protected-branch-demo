@@ -21,3 +21,4 @@ class CalculatorTest {
     assertEquals(-1, result);
   }
 }
+
