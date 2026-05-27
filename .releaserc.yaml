@@ -1,5 +1,5 @@
 debug: true
-repositoryUrl: https://github.com/mtech-swe-2026-g5/healthmate
+repositoryUrl: https://github.com/Kinle/semantic-release-protected-branch-demo
 branches:
   - name: main
   - name: ci/semantic-release
@@ -11,14 +11,8 @@ plugins:
   - "@semantic-release/changelog"
   - "@semantic-release/github"
   - - "@semantic-release/exec"
-    - prepareCmd: "sed -i 's/\"version\": \".*\"/\"version\": \"${nextRelease.version}\"/g' package.json"
+    - prepareCmd: "sed -i 's/^version.*/version = ${nextRelease.version}/g' gradle.properties"
   - - "@semantic-release/git"
     - assets:
         - package.json
         - CHANGELOG.md
-      gitAuthor:
-        name: "bits-semantic-release-bot[bot]"
-        email: "bits-semantic-release-bot[bot]@users.noreply.github.com"
-      gitCommitter:
-        name: "bits-semantic-release-bot[bot]"
-        email: "bits-semantic-release-bot[bot]@users.noreply.github.com"
