@@ -37,7 +37,7 @@ jobs:
           persist-credentials: false
       - uses: ./.github/workflows/composite/release
         with:
-          release_token: ${{ secrets.RELEASE_TOKEN }}
+          release_token: ${{ secrets.RELEASE_TOKEN_CLASSIC }}
           dry_run: true
   semantic-release:
     name: Semantic Release
