@@ -34,4 +34,11 @@ class CalculatorTest {
     int result = calculator.div(25, 5);
     assertEquals(5, result);
   }
+
+  @Test
+  void shouldModuloNumbers() {
+    Calculator calculator = new Calculator();
+    int result = calculator.mod(10, 6);
+    assertEquals(4, result);
+  }
 }
