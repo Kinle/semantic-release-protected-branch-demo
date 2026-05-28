@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Kinle/semantic-release-protected-branch-demo/compare/v1.0.0...v1.1.0) (2026-05-28)
+
+
+### Features
+
+* add modulo ([#4](https://github.com/Kinle/semantic-release-protected-branch-demo/issues/4)) ([3a814bf](https://github.com/Kinle/semantic-release-protected-branch-demo/commit/3a814bf46055b8afcbb2798144157c568503b430))
+
 # 1.0.0 (2026-05-27)
 
 
